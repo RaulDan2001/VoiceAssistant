@@ -34,15 +34,7 @@ class Assistant(object):
         self.translate_tokenizer.pad_token = self.translate_tokenizer.eos_token
         self.ro_translate_tokenizer.pad_token = self.ro_translate_tokenizer.eos_token
 
-        # Interacțiune continuă cu utilizatorul
-        print("Salut de la asistent! Scrie exit pentru a ieși.")
-        while True:
-            user_input = input("Eu: ")
-            if user_input.lower() == "exit":
-                print("Asistent: La revedere!")
-                break
-            response = self.chat_with_assistant(user_input)
-            print("Asistent:", response)
+        
         
     def translate_to_english(self,text):
         # Tokenizez textul
@@ -112,6 +104,16 @@ class Assistant(object):
         #rezult = translate_to_romanian(response)
         return response
 
+    def assistant_run(self):
+        # Interacțiune continuă cu utilizatorul
+        print("Salut de la asistent! Scrie exit pentru a ieși.")
+        while True:
+            user_input = input("Eu: ")
+            if user_input.lower() == "exit":
+                print("Asistent: La revedere!")
+                break
+            response = self.chat_with_assistant(user_input)
+            print("Asistent:", response)
     
 
 

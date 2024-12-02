@@ -3,7 +3,8 @@ from assistant import Assistant
 
 # Rulez aplicația
 def main():
-    Assistant()
+    asist = Assistant()
+    asist.assistant_run()
 
 if __name__ == "__main__":
     main()
