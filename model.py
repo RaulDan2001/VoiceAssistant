@@ -77,10 +77,10 @@ class Assistant(object):
         result = result.replace(f"translate ro to en: ", "").replace("<pad>", "").strip()
         return result
 
-    def chat_with_assistant(self,prompt):
+    def chat_with_assistant(self,prompt, max_new_tokens=70, num_return_sequences=1, top_k=50, top_p=0.30, temperature=0.7):
         # Convertesc întrebarea în formatul necesar pentru model
         translated_inputs = self.translate_to_english(prompt)
-        print ("Translatet_input recevied=", translated_inputs)
+        #print ("Translatet_input recevied=", translated_inputs)
         inputs = self.tokenizer(translated_inputs, return_tensors="pt", padding=True, truncation=True)
         # Accesez input_ids
         input_ids = inputs["input_ids"]
@@ -88,15 +88,15 @@ class Assistant(object):
         # Generez un răspuns folosind parametrii pentru a evita repetitivitatea
         outputs = self.model.generate(
             input_ids,  # Tensorul corect
-            max_new_tokens=70,
-            num_return_sequences=1,
+            max_new_tokens=max_new_tokens,
+            num_return_sequences=num_return_sequences,
             pad_token_id=self.tokenizer.pad_token_id,
             eos_token_id=self.tokenizer.eos_token_id,
             attention_mask=inputs["attention_mask"],  # Adaug attention_mask
             do_sample=True,  # Activez sampling-ul
-            top_k=50,  # Selecție restrictivă pentru cele mai probabile 50 de token-uri
-            top_p=0.95,  # Nucleus sampling
-            temperature=0.7,  # Temperatura mai mică reduce repetitivitatea
+            top_k=top_k,  # Selecție restrictivă pentru cele mai probabile 50 de token-uri
+            top_p=top_p,  # Nucleus sampling
+            temperature=temperature,  # Temperatura mai mică reduce repetitivitatea
         )
     
         # Decodific răspunsul în text

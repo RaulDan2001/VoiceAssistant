@@ -1,5 +1,5 @@
 ﻿import customtkinter as ctk
-from assistant import Assistant
+from AssistantUI import AssistantUI
 from stt import SpeechLogic
 
 root = ctk.CTk()
@@ -11,8 +11,8 @@ def stttts_runtime():
     speech.speech_run()
 
 def assistant_runtime():
-    asist = Assistant()
-    asist.assistant_run()
+    asist = AssistantUI()
+    asist.create_ui()
 
 def makewindow():
     root = ctk.CTk()
