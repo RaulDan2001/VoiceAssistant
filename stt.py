@@ -22,7 +22,7 @@ class SpeechLogic(object):
             continue
 
         time.sleep(1)
-        os.remove(audio_file)
+        #os.remove(audio_file)
 
     def translate_and_speak(self,text, src_lang, target_lang):
         translation = GoogleTranslator(source=src_lang, target=target_lang).translate(text)

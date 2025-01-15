@@ -88,7 +88,7 @@ class Assistant(object):
         # Generez un răspuns folosind parametrii pentru a evita repetitivitatea
         outputs = self.model.generate(
             input_ids,  # Tensorul corect
-            max_new_tokens=50,
+            max_new_tokens=70,
             num_return_sequences=1,
             pad_token_id=self.tokenizer.pad_token_id,
             eos_token_id=self.tokenizer.eos_token_id,
@@ -114,6 +114,5 @@ class Assistant(object):
                 break
             response = self.chat_with_assistant(user_input)
             print("Asistent:", response)
-    
 
 
