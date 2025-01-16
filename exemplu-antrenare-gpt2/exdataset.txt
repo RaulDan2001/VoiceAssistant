@@ -1,0 +1,63 @@
+Exemplu de set de date
+
+Un mic set de date textuale (de exemplu, articole scurte sau propoziții):
+
+1. Pisicile sunt animale curioase și adoră să exploreze.  
+2. Soarele răsare mereu la est și apune la vest.  
+3. Mașinile electrice sunt din ce în ce mai populare datorită eficienței lor energetice.  
+4. AI-ul poate genera text, imagini și chiar crea muzică.
+
+Preprocesare pentru GPT-2
+
+Modelul GPT-2 funcționează cu text simplu, dar preprocesarea implică:
+
+    Concatenarea tuturor intrărilor într-un singur șir de text.
+    Tokenizarea (împărțirea textului în unități mai mici numite "tokens").
+    Maparea tokenilor la identificatori numerici conform vocabularului GPT-2.
+
+1. Concatenare
+
+Pisicile sunt animale curioase și adoră să exploreze. Soarele răsare mereu la est și apune la vest. Mașinile electrice sunt din ce în ce mai populare datorită eficienței lor energetice. AI-ul poate genera text, imagini și chiar crea muzică.
+
+2. Tokenizare
+
+GPT-2 utilizează Byte Pair Encoding (BPE) pentru a împărți textul în tokeni. Fiecare cuvânt, spațiu sau simbol devine un token (sau o combinație de tokeni). Exemplu:
+
+Text tokenizat:
+
+["Pisicile", " sunt", " animale", " curioase", " și", " adoră", " să", " exploreze", ".", " Soarele", " răsare", " mereu", " la", " est", " și", " apune", " la", " vest", ".", ...]
+
+3. Mapare la identificatori numerici
+
+Fiecare token este mapat la un identificator numeric din vocabularul GPT-2. De exemplu:
+
+["Pisicile", " sunt", " animale", ...] → [12143, 345, 789, ...]
+
+Exemplu simplificat de intrare pentru antrenare
+
+Modelul GPT-2 folosește o abordare de predictive text: încearcă să prezică următorul token pe baza secvenței anterioare.
+Intrare pentru model
+
+"Pisicile sunt animale curioase și adoră să exploreze."
+
+Antrenare
+
+Modelul primește secvența și trebuie să prezică următorul cuvânt/token, astfel:
+
+    Intrare: "Pisicile sunt animale curioase și adoră să"
+    Predicție așteptată: "exploreze"
+
+Această operație continuă pentru fiecare parte a textului.
+Cum arată o secvență completă de antrenare?
+
+O secvență lungă ar fi împărțită astfel:
+Input:
+
+Pisicile sunt animale curioase și adoră să exploreze. Soarele răsare mereu la est.
+
+Predicții așteptate:
+
+    Intrare: "Pisicile" → Predicție: "sunt"
+    Intrare: "Pisicile sunt" → Predicție: "animale"
+    Intrare: "Pisicile sunt animale" → Predicție: "curioase"
+    ... și așa mai departe.
